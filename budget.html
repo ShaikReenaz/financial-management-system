@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Management</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="add-transaction.html">Add Transaction</a>
+        <a class="nav-link" href="history.html">Transaction History</a>
+        <a class="nav-link active" href="budget.html" aria-current="page">Budget Management</a>
+        <a class="nav-link" href="savings.html">Savings Goals</a>
+        <a class="nav-link" href="reports.html">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Budget Management</h1>
+          <p class="page-intro">Set monthly spending plans and keep an eye on your expenses.</p>
+        </div>
+      </header>
+
+      <section class="card budget-overview" aria-labelledby="overview-heading">
+        <div class="budget-overview-header">
+          <div class="card-heading">
+            <h2 id="overview-heading">Monthly overview</h2>
+            <p>Only expense transactions for the selected month are included.</p>
+          </div>
+          <div class="form-field budget-month-field">
+            <label for="budget-month">Budget month</label>
+            <input id="budget-month" type="month">
+          </div>
+        </div>
+
+        <p class="budget-message" id="budget-message" role="status" aria-live="polite"></p>
+        <div id="budget-summary"></div>
+        <div class="category-spending" id="category-spending"></div>
+      </section>
+
+      <section class="card form-card budget-editor" aria-labelledby="budget-form-heading">
+        <div class="card-heading">
+          <h2 id="budget-form-heading">Set your budget</h2>
+          <p>Set a total monthly limit and optional limits for each category.</p>
+        </div>
+        <form id="budget-form">
+          <div class="form-grid budget-form-grid">
+            <div class="form-field form-field-wide">
+              <label for="total-budget">Total monthly budget (₹)</label>
+              <input id="total-budget" name="total" type="number" min="0.01" step="any" placeholder="e.g. 30000" required>
+            </div>
+            <div class="form-field">
+              <label for="budget-food">Food limit (₹)</label>
+              <input id="budget-food" name="Food" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field">
+              <label for="budget-transport">Transport limit (₹)</label>
+              <input id="budget-transport" name="Transport" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field">
+              <label for="budget-shopping">Shopping limit (₹)</label>
+              <input id="budget-shopping" name="Shopping" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field">
+              <label for="budget-bills">Bills limit (₹)</label>
+              <input id="budget-bills" name="Bills" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field">
+              <label for="budget-education">Education limit (₹)</label>
+              <input id="budget-education" name="Education" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field">
+              <label for="budget-entertainment">Entertainment limit (₹)</label>
+              <input id="budget-entertainment" name="Entertainment" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+            <div class="form-field form-field-wide">
+              <label for="budget-other">Other limit (₹)</label>
+              <input id="budget-other" name="Other" type="number" min="0" step="any" placeholder="Optional">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Save Budget</button>
+            <p class="form-message" id="budget-form-message" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/budget.js"></script>
+</body>
+</html>

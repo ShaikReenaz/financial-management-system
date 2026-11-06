@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Transaction</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link active" href="add-transaction.html" aria-current="page">Add Transaction</a>
+        <a class="nav-link" href="history.html">Transaction History</a>
+        <a class="nav-link" href="budget.html">Budget Management</a>
+        <a class="nav-link" href="savings.html">Savings Goals</a>
+        <a class="nav-link" href="reports.html">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Add Transaction</h1>
+          <p class="page-intro">Record income or an expense in your personal finances.</p>
+        </div>
+      </header>
+
+      <section class="card form-card" aria-labelledby="form-heading">
+        <div class="card-heading">
+          <h2 id="form-heading">Transaction details</h2>
+          <p>Fields marked as required must be filled in before saving.</p>
+        </div>
+
+        <form id="transaction-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="type">Transaction type <span aria-hidden="true">*</span></label>
+              <select id="type" name="type" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="amount">Amount (₹) <span aria-hidden="true">*</span></label>
+              <input id="amount" name="amount" type="number" min="0.01" step="any" placeholder="e.g. 1500" required>
+            </div>
+
+            <div class="form-field">
+              <label for="category">Category <span aria-hidden="true">*</span></label>
+              <input id="category" name="category" type="text" maxlength="60" placeholder="e.g. Salary or Groceries" required>
+            </div>
+
+            <div class="form-field">
+              <label for="date">Date <span aria-hidden="true">*</span></label>
+              <input id="date" name="date" type="date" required>
+            </div>
+
+            <div class="form-field form-field-wide">
+              <label for="description">Description <span aria-hidden="true">*</span></label>
+              <textarea id="description" name="description" rows="4" maxlength="250" placeholder="Add a short note about this transaction" required></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Save Transaction</button>
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/transactions.js"></script>
+</body>
+</html>

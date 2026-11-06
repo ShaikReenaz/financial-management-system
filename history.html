@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction History</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="add-transaction.html">Add Transaction</a>
+        <a class="nav-link active" href="history.html" aria-current="page">Transaction History</a>
+        <a class="nav-link" href="budget.html">Budget Management</a>
+        <a class="nav-link" href="savings.html">Savings Goals</a>
+        <a class="nav-link" href="reports.html">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Transaction History</h1>
+          <p class="page-intro">Review and manage your saved income and expenses.</p>
+        </div>
+      </header>
+
+      <section class="card history-card" aria-label="Transaction history">
+        <div class="history-toolbar">
+          <div class="form-field history-search">
+            <label for="transaction-search">Search transactions</label>
+            <input id="transaction-search" type="search" placeholder="Search description or category" autocomplete="off">
+          </div>
+          <div class="form-field history-filter">
+            <label for="transaction-filter">Show</label>
+            <select id="transaction-filter">
+              <option value="all">All Transactions</option>
+              <option value="income">Income</option>
+              <option value="expense">Expenses</option>
+            </select>
+          </div>
+        </div>
+
+        <p class="history-message" id="history-message" role="status" aria-live="polite"></p>
+        <div class="transaction-list" id="transaction-list" aria-live="polite"></div>
+      </section>
+
+      <section class="card form-card history-editor" id="edit-section" aria-labelledby="edit-heading" hidden>
+        <div class="card-heading">
+          <h2 id="edit-heading">Edit transaction</h2>
+          <p>Update the details below and save your changes.</p>
+        </div>
+        <form id="edit-form">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="edit-type">Transaction type</label>
+              <select id="edit-type" name="type" required>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="edit-amount">Amount (₹)</label>
+              <input id="edit-amount" name="amount" type="number" min="0.01" step="any" required>
+            </div>
+            <div class="form-field">
+              <label for="edit-category">Category</label>
+              <input id="edit-category" name="category" type="text" maxlength="60" required>
+            </div>
+            <div class="form-field">
+              <label for="edit-date">Date</label>
+              <input id="edit-date" name="date" type="date" required>
+            </div>
+            <div class="form-field form-field-wide">
+              <label for="edit-description">Description</label>
+              <textarea id="edit-description" name="description" rows="4" maxlength="250" required></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Save Changes</button>
+            <button class="secondary-button" id="cancel-edit" type="button">Cancel</button>
+            <p class="form-message" id="edit-message" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/history.js"></script>
+</body>
+</html>

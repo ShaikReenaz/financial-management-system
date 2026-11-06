@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Chart.js draws the dashboard chart. No install step is required. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link active" href="index.html" aria-current="page">Dashboard</a>
+        <a class="nav-link" href="add-transaction.html">Add Transaction</a>
+        <a class="nav-link" href="history.html">Transaction History</a>
+        <a class="nav-link" href="budget.html">Budget Management</a>
+        <a class="nav-link" href="savings.html">Savings Goals</a>
+        <a class="nav-link" href="reports.html">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Dashboard</h1>
+          <p class="page-intro">A simple snapshot of the money saved in this browser.</p>
+        </div>
+      </header>
+
+      <section class="summary-grid" aria-label="Money summary">
+        <article class="card">
+          <p class="card-label">Balance</p>
+          <p class="card-value" id="balance">₹0</p>
+          <p class="card-note">Income minus expenses</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Income</p>
+          <p class="card-value" id="income">₹0</p>
+          <p class="card-note">Money coming in</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Expenses</p>
+          <p class="card-value" id="expenses">₹0</p>
+          <p class="card-note">Money going out</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Transactions</p>
+          <p class="card-value" id="transaction-count">0</p>
+          <p class="card-note">Saved on this device</p>
+        </article>
+      </section>
+
+      <section class="card chart-card">
+        <div class="card-heading">
+          <h2>This year</h2>
+          <p>Income and expenses by month. The bars stay at zero until transactions are saved.</p>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="overview-chart" aria-label="Income and expenses by month"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

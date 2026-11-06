@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Savings Goals</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="add-transaction.html">Add Transaction</a>
+        <a class="nav-link" href="history.html">Transaction History</a>
+        <a class="nav-link" href="budget.html">Budget Management</a>
+        <a class="nav-link active" href="savings.html" aria-current="page">Savings Goals</a>
+        <a class="nav-link" href="reports.html">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Savings Goals</h1>
+          <p class="page-intro">Create goals, track your progress, and add contributions as you save.</p>
+        </div>
+      </header>
+
+      <section class="card savings-list-card" aria-labelledby="goals-heading">
+        <div class="card-heading">
+          <h2 id="goals-heading">Your goals</h2>
+          <p>Each contribution is kept separate from your income and expenses.</p>
+        </div>
+        <p class="savings-message" id="savings-message" role="status" aria-live="polite"></p>
+        <div class="savings-goal-list" id="savings-goal-list" aria-live="polite"></div>
+      </section>
+
+      <section class="card form-card savings-editor" aria-labelledby="goal-form-heading">
+        <div class="card-heading">
+          <h2 id="goal-form-heading">Create a savings goal</h2>
+          <p>Set a target and optionally record the amount you have already saved.</p>
+        </div>
+        <form id="goal-form">
+          <div class="form-grid">
+            <div class="form-field form-field-wide">
+              <label for="goal-name">Goal name</label>
+              <input id="goal-name" name="name" type="text" maxlength="100" placeholder="e.g. New laptop" required>
+            </div>
+            <div class="form-field">
+              <label for="goal-target">Target amount (₹)</label>
+              <input id="goal-target" name="target" type="number" min="0.01" step="any" placeholder="e.g. 50000" required>
+            </div>
+            <div class="form-field">
+              <label for="goal-saved">Current saved amount (₹)</label>
+              <input id="goal-saved" name="saved" type="number" min="0" step="any" value="0" required>
+            </div>
+            <div class="form-field">
+              <label for="goal-date">Target date</label>
+              <input id="goal-date" name="targetDate" type="date" required>
+            </div>
+            <div class="form-field form-field-wide">
+              <label for="goal-description">Description (optional)</label>
+              <textarea id="goal-description" name="description" rows="3" maxlength="300" placeholder="What are you saving for?"></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-button" id="save-goal-button" type="submit">Create Goal</button>
+            <button class="secondary-button" id="cancel-goal-edit" type="button" hidden>Cancel Edit</button>
+            <p class="form-message" id="goal-form-message" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/savings.js"></script>
+</body>
+</html>

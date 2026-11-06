@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">F</span>
+        <div>
+          <p class="brand-name">FMS</p>
+          <p class="brand-tag">Financial Management System</p>
+        </div>
+      </div>
+
+      <p class="nav-label">Menu</p>
+      <nav class="nav" aria-label="Main">
+        <a class="nav-link" href="index.html">Dashboard</a>
+        <a class="nav-link" href="add-transaction.html">Add Transaction</a>
+        <a class="nav-link" href="history.html">Transaction History</a>
+        <a class="nav-link" href="budget.html">Budget Management</a>
+        <a class="nav-link" href="savings.html">Savings Goals</a>
+        <a class="nav-link active" href="reports.html" aria-current="page">Reports</a>
+      </nav>
+    </aside>
+
+    <div class="sidebar-backdrop" id="sidebar-backdrop" hidden></div>
+
+    <main class="content">
+      <header class="topbar">
+        <button class="menu-button" id="menu-button" type="button" aria-label="Open menu" aria-expanded="false">
+          Menu
+        </button>
+        <div>
+          <h1>Reports</h1>
+          <p class="page-intro">Explore your income, expenses, budgets, and savings progress.</p>
+        </div>
+      </header>
+
+      <section class="card reports-toolbar" aria-label="Report settings">
+        <div>
+          <h2>Financial summary</h2>
+          <p class="reports-description">Transaction totals update for the selected period.</p>
+        </div>
+        <div class="form-field reports-period-field">
+          <label for="report-period">Report period</label>
+          <select id="report-period">
+            <option value="this-month">This Month</option>
+            <option value="last-month">Last Month</option>
+            <option value="this-year">This Year</option>
+            <option value="all-time">All Time</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="reports-message" id="reports-message" role="status" aria-live="polite"></p>
+      <p class="empty-message reports-empty" id="reports-empty" hidden></p>
+
+      <section class="summary-grid report-summary-grid" aria-label="Financial summaries">
+        <article class="card">
+          <p class="card-label">Total Income</p>
+          <p class="card-value" id="report-income">₹0</p>
+          <p class="card-note">For selected period</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Total Expenses</p>
+          <p class="card-value" id="report-expenses">₹0</p>
+          <p class="card-note">For selected period</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Savings Contributions</p>
+          <p class="card-value" id="report-savings">₹0</p>
+          <p class="card-note">Current total saved across goals</p>
+        </article>
+        <article class="card">
+          <p class="card-label">Net Balance</p>
+          <p class="card-value" id="report-balance">₹0</p>
+          <p class="card-note">Income minus expenses</p>
+        </article>
+      </section>
+
+      <section class="report-chart-grid" aria-label="Charts">
+        <article class="card report-chart-card">
+          <div class="card-heading">
+            <h2>Income vs Expenses</h2>
+            <p>Monthly totals in the selected period.</p>
+          </div>
+          <div class="report-chart-wrap">
+            <canvas id="income-expense-chart" aria-label="Monthly income and expenses bar chart"></canvas>
+          </div>
+        </article>
+        <article class="card report-chart-card">
+          <div class="card-heading">
+            <h2>Expenses by Category</h2>
+            <p>Expense distribution for the selected period.</p>
+          </div>
+          <div class="report-chart-wrap category-chart-wrap">
+            <canvas id="category-expense-chart" aria-label="Expense breakdown by category chart"></canvas>
+          </div>
+        </article>
+      </section>
+      <p class="chart-message" id="chart-message" role="status"></p>
+
+      <section class="card report-section" aria-labelledby="category-report-heading">
+        <div class="card-heading">
+          <h2 id="category-report-heading">Spending by category</h2>
+          <p>Expense amounts grouped by transaction category.</p>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr><th scope="col">Category</th><th scope="col">Expenses</th></tr>
+            </thead>
+            <tbody id="category-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card report-section" aria-labelledby="monthly-report-heading">
+        <div class="card-heading">
+          <h2 id="monthly-report-heading">Monthly income and expenses</h2>
+          <p>Monthly totals for the selected period.</p>
+        </div>
+        <div class="report-table-wrap">
+          <table class="report-table">
+            <thead>
+              <tr><th scope="col">Month</th><th scope="col">Income</th><th scope="col">Expenses</th></tr>
+            </thead>
+            <tbody id="monthly-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card report-section" aria-labelledby="budget-report-heading">
+        <div class="card-heading">
+          <h2 id="budget-report-heading">Budget usage</h2>
+          <p>Budget and expense totals for months with a saved budget.</p>
+        </div>
+        <div class="budget-report-list" id="budget-report-list"></div>
+      </section>
+
+      <section class="card report-section" aria-labelledby="savings-report-heading">
+        <div class="card-heading">
+          <h2 id="savings-report-heading">Savings goal progress</h2>
+          <p>The summary uses dated contributions for the selected period; undated starting balances are included in All Time.</p>
+        </div>
+        <div class="report-savings-list" id="report-savings-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/reports.js"></script>
+</body>
+</html>
